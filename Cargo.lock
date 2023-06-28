@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "test-to-ascii-art"
-version = "0.1.0"
+name = "text-to-ascii-art"
+version = "0.1.2"

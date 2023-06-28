@@ -45,7 +45,7 @@ pub fn convert(input: String) -> Result<String, String> {
             bad_char = true
         }
     }
-    // happens if you pass unhadl
+    // happens if you pass unhadled characters
     if bad_char {
         Err("Error: Some unallowed characters, you can use: a..=Z, 0..=9 ,`; : . , < > ( ) ! * # @ ^`".to_string())
     } else {
@@ -55,4 +55,9 @@ pub fn convert(input: String) -> Result<String, String> {
         Ok(final_string)
     }
 }
-fn main() {}
+fn main() {
+    match convert("ab  cdaaa".to_string()) {
+        Ok(string) => println!("{}", string),
+        Err(err) => println!("Error: {}", err),
+    }
+}

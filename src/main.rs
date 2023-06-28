@@ -55,9 +55,4 @@ pub fn convert(input: String) -> Result<String, String> {
         Ok(final_string)
     }
 }
-fn main() {
-    match convert("ab  cdaaa".to_string()) {
-        Ok(string) => println!("{}", string),
-        Err(err) => println!("Error: {}", err),
-    }
-}
+fn main() {}

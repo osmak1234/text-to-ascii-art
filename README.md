@@ -1,9 +1,24 @@
 ## Usage
 
-I made this crate for my project, if you need larger text in terminal, you need to use
-ascii art characters. This simple crate provides function to make a ascii art string from text and to join 2 ascii art strings (they both need to be rectangle for it to work).
+Provides 2 functions for working with and creating ascii art from simple text.
 
+---
+
+Convert text and selected symbols into ascii art
+
+```rust
 fn convert (input: String) -> Result<String, String>
+```
+
+---
+
+Join 2 ascii art images together (they both need to be rectangle for it to work, add spaces to the end so it's rectangle)
+
+```rust
+fn join_art (s1: &str, s2: &str) -> String
+```
+
+---
 
 If you cargo run this crate you can enter input text and it will just print and than exit.
 
@@ -22,12 +37,13 @@ fn main () {
 
 ```toml
 [dependencies]
-text-to-ascii-art="0.1"
+text-to-ascii-art="0.1.5"
 ```
 
-## TODO
+## Road map
 
 - [x] kindof monospace
-- [ ] full monospace
-- [ ] add some more characters
-- [ ] eliminate the need for spacing
+- [x] full monospace
+- [ ] add some more special characters
+- [ ] auto spacing for join art
+- [ ] better documentation

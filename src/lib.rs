@@ -33,7 +33,6 @@ pub fn join_art(s1: &str, s2: &str) -> String {
 pub fn convert(input: String) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input
-        .trim()
         .chars()
         .map(|ch| CHARS.get(ch as usize).unwrap_or(&"").to_owned())
         .collect::<Vec<&str>>();

@@ -22,9 +22,11 @@ fn join_art (s1: &str, s2: &str) -> String
 
 If you cargo run this crate you can enter input text and it will just print and than exit.
 
-<video width="640" height="480" controls>
-  <source src="./asset/movie.mp4" type="video/mp4">
-</video>
+
+https://github.com/osmak1234/text-to-ascii-art/assets/91377215/ea937074-fdc6-4c67-839e-15d6854f0bee
+
+
+
 
 ## <a href="#-usage-in-rust"><img src="https://rustacean.net/assets/rustacean-flat-noshadow.svg" width="16" height="16"></a> Usage in Rust
 

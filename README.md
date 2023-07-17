@@ -22,7 +22,7 @@ fn join_art (s1: &str, s2: &str) -> String
 
 If you cargo run this crate you can enter input text and it will just print and then exit.
 
-Video example:
+
 https://github.com/osmak1234/text-to-ascii-art/assets/91377215/ea937074-fdc6-4c67-839e-15d6854f0bee
 
 ## <a href="#-usage-in-rust"><img src="https://rustacean.net/assets/rustacean-flat-noshadow.svg" width="16" height="16"></a> Usage in Rust

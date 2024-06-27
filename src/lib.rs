@@ -31,12 +31,12 @@ pub fn join_art(s1: &str, s2: &str) -> String {
     }
 }
 
-pub fn convert(input: String) -> Result<String, String> {
+pub fn convert(input: String, font: &str) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input
         .chars()
         .map(|ch| {
-            get_font("default")
+            get_font(font)
                 .get(ch as usize)
                 .unwrap_or(&"")
                 .to_owned()

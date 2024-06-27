@@ -10,7 +10,7 @@ fn main() {
         .expect("Failed to read line");
     input = input.trim().to_string();
 
-    match convert(input) {
+    match convert(input, "default") {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }

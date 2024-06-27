@@ -35,7 +35,12 @@ pub fn convert(input: String) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input
         .chars()
-        .map(|ch| get_font("default").get(ch as usize).unwrap_or(&"").to_owned())
+        .map(|ch| {
+            get_font("default")
+                .get(ch as usize)
+                .unwrap_or(&"")
+                .to_owned()
+        })
         .collect::<Vec<&str>>();
 
     // function to go through all the entered characters

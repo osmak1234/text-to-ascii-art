@@ -1,4 +1,4 @@
-pub const CHARS: [&str; 344] = [
+pub const SMALL: [&str; 344] = [
     "",
     "",
     "",

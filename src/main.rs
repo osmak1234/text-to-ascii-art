@@ -1,4 +1,4 @@
-pub mod ascii;
+pub mod fonts;
 use std::io;
 use text_to_ascii_art::convert;
 

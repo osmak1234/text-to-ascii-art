@@ -4,7 +4,7 @@ use fonts::get_font;
 // You need to specially concat ascii art because of how line brakes work,
 // otherwise you would have just
 // everything vertically
-pub fn join_art(s1: &str, s2: &str) -> String {
+pub fn join_art(s1: &str, s2: &str, gap: usize) -> String {
     // handles edge cases, with simple match
     match (s1.is_empty(), s2.is_empty()) {
         (true, true) => "".to_string(),
@@ -23,7 +23,7 @@ pub fn join_art(s1: &str, s2: &str) -> String {
             let s3: Vec<String> = lines1
                 .into_iter()
                 .zip(lines2.into_iter())
-                .map(|(str1, str2)| str1.to_owned() + " " + str2)
+                .map(|(str1, str2)| str1.to_owned() + &" ".repeat(gap) + str2)
                 .collect();
 
             s3.join("\n")
@@ -31,12 +31,23 @@ pub fn join_art(s1: &str, s2: &str) -> String {
     }
 }
 
-pub fn convert(input: String) -> Result<String, String> {
+fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+
+    let spaces_added: Vec<String> = lines
+        .into_iter()
+        .map(|line| " ".repeat(leading).to_owned() + &line.to_owned() + &" ".repeat(trailing))
+        .collect();
+
+    spaces_added.join("\n")
+}
+
+pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: usize) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input
         .chars()
         .map(|ch| {
-            get_font("default")
+            get_font(font)
                 .get(ch as usize)
                 .unwrap_or(&"")
                 .to_owned()
@@ -56,8 +67,9 @@ pub fn convert(input: String) -> Result<String, String> {
         Err("Error: Some not allowed characters, you can use: a..=Z, 0..=9 ,`; : . , < > ( ) ! * # @ ^`".to_string())
     } else {
         for art in art_vector {
-            final_string = join_art(&final_string, art);
+            final_string = join_art(&final_string, art, gap);
         }
-        Ok(final_string)
+
+        Ok(add_spaces(&final_string, leading, trailing))
     }
 }

@@ -42,6 +42,44 @@ fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
     spaces_added.join("\n")
 }
 
+fn align_center(art_string: &str, width: usize) -> String {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+    let art_length: usize = lines[0].len();
+    let spaces = (width - art_length) / 2;
+
+    add_spaces(art_string, spaces, spaces)
+}
+
+fn align_left(art_string: &str, width: usize) -> String {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+    let art_length: usize = lines[0].len();
+    let spaces = width - art_length;
+
+    add_spaces(art_string, 0, spaces)
+}
+
+fn align_right(art_string: &str, width: usize) -> String {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+    let art_length: usize = lines[0].len();
+    let spaces = width - art_length;
+
+    add_spaces(art_string, spaces, 0)
+}
+
+pub enum Alignment {
+    Left,
+    Center,
+    Right
+}
+
+pub fn align(art_string: &str, alignment: Alignment, width: usize) -> String {
+    match alignment {
+        Alignment::Left => {align_left(art_string, width)}
+        Alignment::Center => {align_center(art_string, width)}
+        Alignment::Right => {align_right(art_string, width)}
+    }
+} 
+
 pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: usize) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input

@@ -31,7 +31,18 @@ pub fn join_art(s1: &str, s2: &str, gap: usize) -> String {
     }
 }
 
-pub fn convert(input: String, font: &str, gap: usize) -> Result<String, String> {
+fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+
+    let spaces_added: Vec<String> = lines
+        .into_iter()
+        .map(|line| " ".repeat(leading).to_owned() + &line.to_owned() + &" ".repeat(trailing))
+        .collect();
+
+    spaces_added.join("\n")
+}
+
+pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: usize) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
     let art_vector = input
         .chars()
@@ -58,6 +69,7 @@ pub fn convert(input: String, font: &str, gap: usize) -> Result<String, String> 
         for art in art_vector {
             final_string = join_art(&final_string, art, gap);
         }
-        Ok(final_string)
+
+        Ok(add_spaces(&final_string, leading, trailing))
     }
 }

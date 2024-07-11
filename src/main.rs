@@ -11,37 +11,37 @@ fn main() {
     let symbols1 = "!\"#$%&'()*+,-./:".to_string();
     let symbols2 = ";<=>?@[\\]^_`{|}~".to_string();
 
-    match convert(alphabet1.to_uppercase(), font) {
+    match convert(alphabet1.to_uppercase(), font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
 
-    match convert(alphabet2.to_uppercase(), font) {
+    match convert(alphabet2.to_uppercase(), font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
 
-    match convert(alphabet1, font) {
+    match convert(alphabet1, font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
 
-    match convert(alphabet2, font) {
+    match convert(alphabet2, font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
 
-    match convert(numbers.to_uppercase(), font) {
+    match convert(numbers.to_uppercase(), font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
     
-    match convert(symbols1.to_uppercase(), font) {
+    match convert(symbols1.to_uppercase(), font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
 
-    match convert(symbols2.to_uppercase(), font) {
+    match convert(symbols2.to_uppercase(), font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }
@@ -57,7 +57,7 @@ fn main() {
         .expect("Failed to read line");
     input = input.trim().to_string();
 
-    match convert(input, font) {
+    match convert(input, font, 0) {
         Ok(string) => println!("{}", string),
         Err(err) => println!("Error: {}", err),
     }

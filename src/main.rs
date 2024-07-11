@@ -1,7 +1,7 @@
 pub mod fonts;
 use std::io;
 use std::io::Write;
-use text_to_ascii_art::convert;
+use text_to_ascii_art::{align, Alignment, convert};
 
 fn main() {
     let font = "small";
@@ -43,6 +43,21 @@ fn main() {
 
     match convert(symbols2.to_uppercase(), font, 0, 0, 0) {
         Ok(string) => println!("{}", string),
+        Err(err) => println!("Error: {}", err),
+    }
+
+    match convert("Align Left".to_string(), font, 0, 0, 0) {
+        Ok(string) => println!("{}", align(&string, Alignment::Left, 72)),
+        Err(err) => println!("Error: {}", err),
+    }
+
+    match convert("Align Center".to_string(), font, 0, 0, 0) {
+        Ok(string) => println!("{}", align(&string, Alignment::Center, 72)),
+        Err(err) => println!("Error: {}", err),
+    }
+
+    match convert("Align Right".to_string(), font, 0, 0, 0) {
+        Ok(string) => println!("{}", align(&string, Alignment::Right, 72)),
         Err(err) => println!("Error: {}", err),
     }
     

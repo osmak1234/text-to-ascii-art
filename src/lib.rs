@@ -23,7 +23,7 @@ pub fn join_art(s1: &str, s2: &str) -> String {
             let s3: Vec<String> = lines1
                 .into_iter()
                 .zip(lines2.into_iter())
-                .map(|(str1, str2)| str1.to_owned() + " " + str2)
+                .map(|(str1, str2)| str1.to_owned() + str2)
                 .collect();
 
             s3.join("\n")

@@ -43,27 +43,29 @@ fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
 }
 
 fn align_center(art_string: &str, width: usize) -> String {
-    let lines: Vec<&str> = art_string.split('\n').collect();
-    let art_length: usize = lines[0].len();
+    let art_length: usize = get_art_length(art_string);
     let spaces = (width - art_length) / 2;
 
     add_spaces(art_string, spaces, spaces)
 }
 
 fn align_left(art_string: &str, width: usize) -> String {
-    let lines: Vec<&str> = art_string.split('\n').collect();
-    let art_length: usize = lines[0].len();
+    let art_length: usize = get_art_length(art_string);
     let spaces = width - art_length;
 
     add_spaces(art_string, 0, spaces)
 }
 
 fn align_right(art_string: &str, width: usize) -> String {
-    let lines: Vec<&str> = art_string.split('\n').collect();
-    let art_length: usize = lines[0].len();
+    let art_length: usize = get_art_length(art_string);
     let spaces = width - art_length;
 
     add_spaces(art_string, spaces, 0)
+}
+
+fn get_art_length(art_string: &str) -> usize {
+    let lines: Vec<&str> = art_string.split('\n').collect();
+    lines[0].len()
 }
 
 pub enum Alignment {
@@ -82,7 +84,7 @@ pub fn align(art_string: &str, alignment: Alignment, width: usize) -> String {
 
 pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: usize) -> Result<String, String> {
     // substitutes everything with the equivalent in ascii art, or an empty string instead
-    let art_vector = input
+    let arts = input
         .chars()
         .map(|ch| {
             get_font(font)
@@ -95,7 +97,7 @@ pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: 
     // function to go through all the entered characters
     let mut final_string = "".to_string();
     let mut bad_char = false;
-    for art in &art_vector {
+    for art in &arts {
         if art.is_empty() && !bad_char {
             bad_char = true
         }
@@ -104,7 +106,7 @@ pub fn convert(input: String, font: &str, leading: usize, gap: usize, trailing: 
     if bad_char {
         Err("Error: Some not allowed characters, you can use: a..=Z, 0..=9 ,`; : . , < > ( ) ! * # @ ^`".to_string())
     } else {
-        for art in art_vector {
+        for art in arts {
             final_string = join_art(&final_string, art, gap);
         }
 

@@ -22,7 +22,7 @@ pub fn join_art(s1: &str, s2: &str, gap: usize) -> String {
             // concat each line of the 2 ascii arts
             let s3: Vec<String> = lines1
                 .into_iter()
-                .zip(lines2.into_iter())
+                .zip(lines2)
                 .map(|(str1, str2)| str1.to_owned() + &" ".repeat(gap) + str2)
                 .collect();
 
@@ -36,7 +36,7 @@ fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
 
     let spaces_added: Vec<String> = lines
         .into_iter()
-        .map(|line| " ".repeat(leading).to_owned() + &line.to_owned() + &" ".repeat(trailing))
+        .map(|line| " ".repeat(leading).to_owned() + line + &" ".repeat(trailing))
         .collect();
 
     spaces_added.join("\n")

@@ -6,6 +6,7 @@ pub fn get_font(font_name: &str) -> [&str; 344] {
     match font_name {
         "standard" => standard::STANDARD,
         "small" => small::SMALL,
-        "default" | _ => default_font::DEFAULT,
+        "default" => default_font::DEFAULT,
+        _ => default_font::DEFAULT,
     }
 }

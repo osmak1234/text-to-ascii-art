@@ -31,8 +31,8 @@ pub fn join_art(s1: &str, s2: &str, gap: usize) -> String {
     }
 }
 
-fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
-    let lines: Vec<&str> = art_string.split('\n').collect();
+fn add_spaces(art: &str, leading: usize, trailing: usize) -> String {
+    let lines: Vec<&str> = art.split('\n').collect();
 
     let spaces_added: Vec<String> = lines
         .into_iter()
@@ -42,29 +42,29 @@ fn add_spaces(art_string: &str, leading: usize, trailing: usize) -> String {
     spaces_added.join("\n")
 }
 
-fn align_center(art_string: &str, width: usize) -> String {
-    let art_length: usize = get_art_length(art_string);
+fn align_center(art: &str, width: usize) -> String {
+    let art_length: usize = get_art_length(art);
     let spaces = (width - art_length) / 2;
 
-    add_spaces(art_string, spaces, spaces)
+    add_spaces(art, spaces, spaces)
 }
 
-fn align_left(art_string: &str, width: usize) -> String {
-    let art_length: usize = get_art_length(art_string);
+fn align_left(art: &str, width: usize) -> String {
+    let art_length: usize = get_art_length(art);
     let spaces = width - art_length;
 
-    add_spaces(art_string, 0, spaces)
+    add_spaces(art, 0, spaces)
 }
 
-fn align_right(art_string: &str, width: usize) -> String {
-    let art_length: usize = get_art_length(art_string);
+fn align_right(art: &str, width: usize) -> String {
+    let art_length: usize = get_art_length(art);
     let spaces = width - art_length;
 
-    add_spaces(art_string, spaces, 0)
+    add_spaces(art, spaces, 0)
 }
 
-fn get_art_length(art_string: &str) -> usize {
-    let lines: Vec<&str> = art_string.split('\n').collect();
+fn get_art_length(art: &str) -> usize {
+    let lines: Vec<&str> = art.split('\n').collect();
     lines[0].len()
 }
 
@@ -74,11 +74,11 @@ pub enum Alignment {
     Right,
 }
 
-pub fn align(art_string: &str, alignment: Alignment, width: usize) -> String {
+pub fn align(art: &str, alignment: Alignment, width: usize) -> String {
     match alignment {
-        Alignment::Left => align_left(art_string, width),
-        Alignment::Center => align_center(art_string, width),
-        Alignment::Right => align_right(art_string, width),
+        Alignment::Left => align_left(art, width),
+        Alignment::Center => align_center(art, width),
+        Alignment::Right => align_right(art, width),
     }
 }
 

@@ -82,7 +82,7 @@ pub fn align(art_string: &str, alignment: Alignment, width: usize) -> String {
     }
 }
 
-pub fn convert(
+pub fn to_art(
     input: String,
     font: &str,
     leading: usize,
